@@ -1,0 +1,227 @@
+@font-face {
+    font-family: 'HancomMalangMalang-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2406-1@1.0/HancomMalangMalang-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Inter-Light';
+    src: url(./asserts/font/Inter-Light.woff2) format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Inter-SemiBold';
+    src: url(./asserts/font/Inter-SemiBold.woff2) format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.main-div {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main-content {
+    flex: 2; /* 남은 공간을 차지하게 만듦 */
+}
+
+.main-header-div {
+    background-image: url(../public/main-gradient.png);
+    background-repeat: repeat-x;
+    max-height: max-content;
+}
+
+.main-header-row {
+    padding-top: 4vmin;
+    padding-left: 3.5vmin;
+}
+
+.main-header-col {
+    background-image: url(../public/main-logo.png);
+    min-height: 15vh;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.main-header-col-pc {
+    /*display: flex;*/
+    flex-direction: column; /* 자식 요소를 상-하로 배치 */
+    /*align-items: flex-end; !* 각 요소를 오른쪽에 정렬 *!*/
+}
+
+.main-header-col-pc-search {
+    margin-top: 4vh;
+    margin-left: auto;
+    margin-right: 40px;
+    background-image: url(../public/main-search.png);
+    height: 28px;
+    width: 214px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right;
+
+    display: flex;
+    justify-content: center; /* 수평 가운데 정렬 */
+    align-items: center; /* 수직 가운데 정렬 */
+}
+
+.main-header-col-pc-search input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-width: 0;
+    background: none;
+    margin-right: 10px;
+    max-width: 170px;
+    max-height: 25px;
+}
+
+.main-header-col-pc-search input:focus {
+    background: none;
+    outline: none;
+    box-shadow: none;
+}
+
+.main-header-col-pc-search input:hover {
+    background: none;
+}
+
+.main-header-col-pc-menu {
+    display: flex;
+    justify-content: flex-end; /* 메뉴를 오른쪽 정렬 */
+    margin-top: 10px;
+    margin-right: 40px;
+}
+
+.main-header-col-pc-menu-link {
+    margin-left: 4vw;
+    font-family: 'HancomMalangMalang-Regular', sans-serif;
+    font-size: 15px;
+    color: black !important;
+}
+
+.main-header-col-pc-menu-cart {
+    margin-left: 3vw;
+}
+
+.main-footer-div body {
+    font-family: 'Inter-Light', sans-serif;
+}
+
+.main-footer-pc-row {
+    padding: 3vh 10vw;
+}
+
+.main-footer-col-pc-info {
+    flex-direction: column;
+}
+
+.main-footer-col-pc-info .info-div {
+    margin-top: 0.2%;
+}
+
+.main-footer-col-pc-info .info-copyright-div {
+    margin-top: 2.5%;
+}
+
+.main-footer-col-pc-info .info-name {
+    font-family: 'Inter-SemiBold', sans-serif;
+}
+
+.main-footer-col-pc-info .info-copyright {
+    font-family: 'Inter-SemiBold', sans-serif;
+}
+
+.main-footer-col-pc-info .info-value {
+    font-family: 'Inter-Light', sans-serif;
+    margin-right: 20px;
+}
+
+.main-footer-col-pc-info .info-business-license {
+    font-family: 'Inter-Light', sans-serif;
+}
+
+.main-footer-col-pc-menu {
+    flex-direction: column;
+}
+
+.main-footer-col-pc-menu > div {
+    display: flex;
+    text-align: right;
+    justify-content: flex-end; /* 오른쪽 정렬 */
+}
+
+.main-footer-col-pc-menu .menu-value {
+    font-family: 'Inter-Light', sans-serif;
+    color: black !important;
+}
+
+.main-footer-col-pc-menu .menu-value-bold {
+    font-family: 'Inter-SemiBold', sans-serif;
+    font-weight: 700;
+    color: black !important;
+}
+
+.main-footer-col-mb-menu .menu-link-div {
+    display: flex;
+    justify-content: center; /* Link 요소들을 가로로 중앙에 정렬 */
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    gap: 5vw; /* Link 요소들 사이에 3vw 간격을 추가 */
+}
+
+.main-footer-col-mb-menu .menu-link-div > div {
+    display: flex;
+    align-items: center; /* Link 요소를 수직 중앙에 정렬 */
+}
+
+.main-footer-col-mb-menu .menu-value {
+    font-family: 'Inter-Light', sans-serif;
+    font-size: 13px;
+    color: black !important;
+}
+
+.main-footer-col-mb-menu .menu-value-bold {
+    font-family: 'Inter-SemiBold', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    color: black !important;
+}
+
+.main-footer-col-mb-info-div {
+    flex-direction: column;
+    margin: 2vh 5vw;
+}
+
+.main-footer-col-mb-info-div .info-div {
+    margin-top: 0.2%;
+}
+
+.main-footer-col-mb-info-div .info-name {
+    font-family: 'Inter-SemiBold', sans-serif;
+    font-size: 13px;
+}
+
+.main-footer-col-mb-info-div .info-value {
+    font-family: 'Inter-Light', sans-serif;
+    font-size: 13px;
+    margin-right: 10px;
+}
+
+.main-footer-col-mb-info-div .info-business-license {
+    font-family: 'Inter-Light', sans-serif;
+}
+
+.main-footer-col-mb-info-div .info-copyright-div {
+    margin-top: 4%;
+}
+
+.main-footer-col-mb-info-div .info-copyright {
+    font-family: 'Inter-SemiBold', sans-serif;
+    font-size: 13px;
+}
