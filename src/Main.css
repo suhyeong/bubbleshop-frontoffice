@@ -27,6 +27,7 @@
 
 .main-content {
     flex: 2; /* 남은 공간을 차지하게 만듦 */
+    display: flex;
 }
 
 .main-header-div {

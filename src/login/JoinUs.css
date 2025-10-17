@@ -1,0 +1,31 @@
+.join-btn-flex {
+    width: 100%;
+    /*background-color: aquamarine;*/
+}
+
+.join-btn {
+    background-color: #03C75A !important;
+    border-color: #03C75A !important;
+    width: 50vw;
+    height: 50px;
+    font-size: 15px;
+    font-weight: 600;
+    color: white;
+}
+
+/* antd Button 컴포넌트의 기본 액션 동작 없앰 */
+.join-btn:hover,
+.join-btn:focus,
+.join-btn:active {
+    background-color: #03C75A !important;
+    border-color: #03C75A !important;
+    color: white !important;
+    opacity: 1 !important;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+.join-btn-logo {
+    width: 32px;
+    height: 32px;
+}
