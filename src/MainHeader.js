@@ -32,7 +32,7 @@ function MainHeader() {
                         <div className='main-header-col-pc-menu'>
                             <Link className='main-header-col-pc-menu-link' href="/join">회원가입</Link>
                             <Link className='main-header-col-pc-menu-link' href="/login">로그인</Link>
-                            <Link className='main-header-col-pc-menu-link' href="https://ant.design">마이페이지</Link>
+                            <Link className='main-header-col-pc-menu-link' href="/mypage">마이페이지</Link>
                             <Link className='main-header-col-pc-menu-link' href="https://ant.design">고객센터</Link>
                             <Link className='main-header-col-pc-menu-cart' href="https://ant.design">
                                 <img src={getCardCount()} style={{width: '24px', height: '24px'}} alt={'cart'}/>
