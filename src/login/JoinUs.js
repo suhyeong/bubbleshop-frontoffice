@@ -8,8 +8,12 @@ function JoinUs() {
 
     const onClickNaverJoin = () => {
         // 네이버 회원가입 진행
-        const url = naver.login(true);
-        window.open(url, 'naverLogin');
+        naver.login(true).then((url) => {
+            if (url) {
+                console.log(url);
+                window.open(url, '네이버 회원가입');
+            }
+        });
     }
 
     const onClickKakaoJoin = () => {
