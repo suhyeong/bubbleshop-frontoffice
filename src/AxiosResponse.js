@@ -24,6 +24,24 @@ const getResult = (response, message) => {
     }
 }
 
+const getErrorMessage = (response, message) => {
+    if(response !== undefined) {
+        let resultCode = response.headers['resultcode'];
+        let resultMessage = message;
+        if(response.headers['resultmessage']) {
+            resultMessage = decodeUTF8String(response.headers['resultmessage']);
+        }
+        //console.log(resultMessage);
+        if(resultMessage === null || resultMessage === undefined)
+            resultMessage = message;
+
+        return `${resultMessage} (에러코드 ${resultCode})`;
+    } else {
+        //response 가 undefined 일 경우
+        return message;
+    }
+}
+
 function decodeUTF8String(encodedStr) {
     try {
         return decodeURIComponent(encodedStr.replace(/\+/g, ' '));
@@ -33,4 +51,4 @@ function decodeUTF8String(encodedStr) {
     }
 }
 
-export { getResult };
+export { getResult, getErrorMessage };

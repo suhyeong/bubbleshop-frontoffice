@@ -1,25 +1,22 @@
-.join-btn-flex {
+.login-btn-flex {
     width: 100%;
-    /*justify-content: center;*/
     /*background-color: aquamarine;*/
 }
 
-.join-btn {
+.login-btn {
     background-color: #03C75A !important;
     border-color: #03C75A !important;
     width: 50vw;
-    max-width: 450px;
-    min-width: 285px;
     height: 50px;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 600;
     color: white;
 }
 
 /* antd Button 컴포넌트의 기본 액션 동작 없앰 */
-.join-btn:hover,
-.join-btn:focus,
-.join-btn:active {
+.login-btn:hover,
+.login-btn:focus,
+.login-btn:active {
     background-color: #03C75A !important;
     border-color: #03C75A !important;
     color: white !important;
@@ -28,9 +25,7 @@
     box-shadow: none !important;
 }
 
-.join-btn-logo {
-    width: 100%;
-    /*height: 32px;*/
-    height: 5vh;
-    max-height: 50px;
+.login-btn-logo {
+    width: 32px;
+    height: 32px;
 }

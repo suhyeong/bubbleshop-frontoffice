@@ -21,6 +21,4 @@ export const ACCESS_TYPE = {
     }
 }
 
-export const AUTH_ERROR = {
-    ERROR: ['access_denied']
-}
+export const DEFAULT_ERROR_MESSAGE = "서비스가 원활하지 않습니다. 잠시 후 다시 시도해주세요.";

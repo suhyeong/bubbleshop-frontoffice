@@ -1,68 +1,72 @@
-import {useEffect, useState} from "react";
-import {LOADING_STATUS, AUTH_PROVIDER, AUTH_ERROR} from "../common/CommonConst";
+import {useCallback, useEffect, useState} from "react";
+import {AUTH_PROVIDER, DEFAULT_ERROR_MESSAGE, LOADING_STATUS} from "../common/CommonConst";
 import {Flex, Spin} from "antd";
-import {
-    LoadingOutlined,
-} from '@ant-design/icons';
+import {LoadingOutlined} from '@ant-design/icons';
+import api from "../common/CommonApi";
+import "../common/CommonCss.css";
+import {getErrorMessage} from "../AxiosResponse";
+import {errorModalWithActionClick} from "../common/CommonComponent";
 
 function OAuthCallback() {
     const [provider, setProvider] = useState('');
     const [status, setStatus] = useState(LOADING_STATUS.LOADING);
 
-    useEffect(() => {
-        const provider = new URLSearchParams(window.location.search).get('provider');
-        setProvider(provider);
-
-        const isError = new URLSearchParams(window.location.search).get('error');
-
-        const hash = window.location.hash.substr(1);
-        const params = new URLSearchParams(hash);
-
-        console.log('isError:'+isError+'params:'+params);
-
-        if (provider === AUTH_PROVIDER.NAVER) {
-            // login failed
-            if (isError && AUTH_ERROR.ERROR.includes(isError)) {
-                console.log('error !!');
-                cancelNaverLogin();
-            } else {
-                // success
-                callbackNaverLogin();
-            }
+    const callbackNaverLogin = useCallback((params, provider) => {
+        const error = params.get('error');
+        // 로그인 실패
+        if (error) {
+            setStatus(LOADING_STATUS.ERROR);
+            errorModalWithActionClick(params.get('error_description') ?? DEFAULT_ERROR_MESSAGE, onClickAlert)
+            return;
         }
+
+        // 로그인 성공
+        const request = {
+            state: params.get('state'),
+            code: params.get('code'),
+            provider: provider
+        }
+
+        api.post(`/member-proxy/member/v1/auth`, request)
+            .then(response => {
+                setStatus(LOADING_STATUS.SUCCESS);
+            })
+            .catch(error => {
+                setStatus(LOADING_STATUS.ERROR);
+                const message = getErrorMessage(error.response, DEFAULT_ERROR_MESSAGE);
+                errorModalWithActionClick(message, onClickAlert)
+            });
     }, []);
 
-    const callbackNaverLogin = () => {
+    useEffect(() => {
+        // ex) oauth-callback?provider=naver&code=gTij0X1FIfw3G2BAoz&state=J277kd6d0d38g80urmha8f2t0ktb
+        const params = new URLSearchParams(window.location.search);
+        const provider = params.get('provider');
+        setProvider(provider);
 
-    }
-
-    const cancelNaverLogin = () => {
-        window.close();
-    }
+        if (provider === AUTH_PROVIDER.NAVER) {
+            callbackNaverLogin(params, provider);
+        }
+    }, [callbackNaverLogin]);
 
     // 팝업 창인 경우 부모 창에 메시지 전송 후 닫기
     useEffect(() => {
-        if (window.opener && status === 'success') {
-            if (status === LOADING_STATUS.SUCCESS) {
-                // todo success
-                window.opener.postMessage(
-                    { type: 'OAUTH_SUCCESS', provider },
-                    window.location.origin
-                );
-            } else if(status === LOADING_STATUS.ERROR) {
-                // todo error
-            }
-
-            window.opener.postMessage(
-                { type: 'OAUTH_SUCCESS', provider },
-                window.location.origin
-            );
+        if (window.opener && status === LOADING_STATUS.SUCCESS) {
+            window.opener.postMessage({ callback_result: LOADING_STATUS.SUCCESS }, '*');
+            window.close();
         }
     }, [status, provider]);
 
+    const onClickAlert = () => {
+        window.opener.postMessage({ callback_result: LOADING_STATUS.ERROR }, '*');
+        window.close();
+    }
+
     return (
-        <Flex align={"center"} gap={"middle"}>
-            <Spin indicator={<LoadingOutlined spin />} />
+        <Flex className={"full-width"} gap="middle" align={"center"} justify={"center"}>
+            {
+                status === LOADING_STATUS.LOADING && <Spin size={"large"} indicator={<LoadingOutlined className={"loading-spin"} spin />} />
+            }
         </Flex>
     );
 }
