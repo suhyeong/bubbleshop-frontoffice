@@ -4,11 +4,13 @@ import {
     SearchOutlined,
 } from '@ant-design/icons'
 import {useState} from "react";
+import {useAuth} from "./AuthProvider";
 
 const { Link } = Typography;
 
 function MainHeader() {
     const [cartCount, setCartCount] = useState(0);
+    const { isMember } = useAuth();
 
     const getCardCount = () => {
         if(cartCount > 0)
@@ -30,9 +32,9 @@ function MainHeader() {
                             <SearchOutlined onClick={onClickSearchBtn} style={{fontSize: '20px'}} />
                         </div>
                         <div className='main-header-col-pc-menu'>
-                            <Link className='main-header-col-pc-menu-link' href="/join">회원가입</Link>
-                            <Link className='main-header-col-pc-menu-link' href="/login">로그인</Link>
-                            <Link className='main-header-col-pc-menu-link' href="https://ant.design">마이페이지</Link>
+                            {!isMember && <Link className='main-header-col-pc-menu-link' href="/login">로그인</Link>}
+                            {isMember && <Link className='main-header-col-pc-menu-link' href="/logout">로그아웃</Link>}
+                            {isMember && <Link className='main-header-col-pc-menu-link' href="https://ant.design">마이페이지</Link>}
                             <Link className='main-header-col-pc-menu-link' href="https://ant.design">고객센터</Link>
                             <Link className='main-header-col-pc-menu-cart' href="https://ant.design">
                                 <img src={getCardCount()} style={{width: '24px', height: '24px'}} alt={'cart'}/>

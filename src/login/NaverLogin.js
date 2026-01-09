@@ -1,12 +1,11 @@
-import {ACCESS_TYPE, AUTH_PROVIDER, DEFAULT_ERROR_MESSAGE} from "../common/CommonConst";
+import {AUTH_PROVIDER, DEFAULT_ERROR_MESSAGE} from "../common/CommonConst";
 import {getErrorMessage} from "../AxiosResponse";
 import api from "../common/CommonApi";
 import {errorModalWithActionClick} from "../common/CommonComponent";
 
 export function NaverLogin() {
-    const login = async (isJoin) => {
-        const type = isJoin ? ACCESS_TYPE.JOIN.code : ACCESS_TYPE.LOGIN.code;
-        return await api.post(`/member-proxy/member/v1/auth/${AUTH_PROVIDER.NAVER}/page?accessType=${type}`)
+    const login = async () => {
+        return await api.post(`/member-proxy/member/v1/auth/${AUTH_PROVIDER.NAVER}/page`)
             .then(response => {
                 return response.data.url;
             })

@@ -1,32 +1,30 @@
 import {Button, Flex} from "antd";
-import "./LoginUs.css";
-import naverLogo from "../asserts/image/naver_login_logo.png";
+import "./Login.css";
 import {NaverLogin} from "./NaverLogin";
 import {useEffect} from "react";
+import {useNavigate} from 'react-router-dom';
 import {LOADING_STATUS} from "../common/CommonConst";
-import {useNavigate} from "react-router-dom";
-
 
 function Login() {
     const navigate = useNavigate();
     const naver = NaverLogin();
 
-    const onClickNaverLogin = () => {
+    const onClickNaverJoin = () => {
         // 네이버 회원가입 진행
-        naver.login(false).then((url) => {
+        naver.login().then((url) => {
             if (url) {
-                window.open(url, '네이버 로그인');
+                window.open(url, '네이버 회원가입');
             }
         });
     }
 
-    const onClickKakaoLogin = () => {
-        // 카카오 로그인 진행
+    const onClickKakaoJoin = () => {
+        // 카카오 회원가입 진행
         // TODO
     }
 
     useEffect(() => {
-        const listener = (result) => {
+        function listener(result) {
             if(result.data.callback_result === LOADING_STATUS.SUCCESS) {
                 navigate('/', {replace: true});
             }
@@ -40,15 +38,9 @@ function Login() {
     }, [navigate]);
 
     return (
-        <Flex className="login-btn-flex" gap="small" align="center" justify="center" vertical>
-            <Button className="login-btn" onClick={onClickNaverLogin}
-                    icon={<img className={"login-btn-logo"} src={naverLogo} alt="네이버"/>}>
-                네이버로 로그인
-            </Button>
-            <Button className="login-btn" onClick={onClickKakaoLogin}
-                    icon={<img className={"login-btn-logo"} src={naverLogo} alt="카카오"/>}>
-                카카오로 로그인
-            </Button>
+        <Flex className="join-btn-flex" gap="middle" align="center" justify="center" vertical>
+            <Button className="naver-login-btn" onClick={onClickNaverJoin}>네이버로 시작하기</Button>
+            <Button className="kakao-login-btn" onClick={onClickKakaoJoin}>카카오로 시작하기</Button>
         </Flex>
     );
 }

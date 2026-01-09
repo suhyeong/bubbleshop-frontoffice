@@ -7,6 +7,7 @@ const errorModalWithActionClick = (message, onClickAction) => {
         title: 'ERROR',
         content: message,
         style: { whiteSpace: 'pre-line' },
+        okText: "확인",
         onOk: onClickAction
     });
 }

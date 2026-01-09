@@ -96,18 +96,18 @@
     display: flex;
     justify-content: flex-end; /* 메뉴를 오른쪽 정렬 */
     margin-top: 10px;
-    margin-right: 40px;
+    margin-right: 50px;
 }
 
 .main-header-col-pc-menu-link {
-    margin-left: 3vw;
+    margin-left: 2vw;
     font-family: 'HancomMalangMalang-Regular', sans-serif;
     font-size: 15px;
     color: black !important;
 }
 
 .main-header-col-pc-menu-cart {
-    margin-left: 3vw;
+    margin-left: 2vw;
 }
 
 .main-footer-div body {
