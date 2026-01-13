@@ -10,6 +10,7 @@ import {errorModalWithActionClick} from "../common/CommonComponent";
 function OAuthCallback() {
     const [provider, setProvider] = useState('');
     const [status, setStatus] = useState(LOADING_STATUS.LOADING);
+    const [isNewMember, setIsNewMember] = useState(false);
 
     const callbackNaverLogin = useCallback((params, provider) => {
         const error = params.get('error');
@@ -29,6 +30,7 @@ function OAuthCallback() {
 
         api.post(`/member-proxy/member/v1/auth`, request)
             .then(response => {
+                setIsNewMember(response.data.isNewMember);
                 setStatus(LOADING_STATUS.SUCCESS);
             })
             .catch(error => {
@@ -52,10 +54,10 @@ function OAuthCallback() {
     // 팝업 창인 경우 부모 창에 메시지 전송 후 닫기
     useEffect(() => {
         if (window.opener && status === LOADING_STATUS.SUCCESS) {
-            window.opener.postMessage({ callback_result: LOADING_STATUS.SUCCESS }, '*');
+            window.opener.postMessage({ callback_result: LOADING_STATUS.SUCCESS, callback_new_member: isNewMember }, '*');
             window.close();
         }
-    }, [status, provider]);
+    }, [status, provider, isNewMember]);
 
     const onClickAlert = () => {
         window.opener.postMessage({ callback_result: LOADING_STATUS.ERROR }, '*');

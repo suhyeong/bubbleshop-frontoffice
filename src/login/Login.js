@@ -4,10 +4,12 @@ import {NaverLogin} from "./NaverLogin";
 import {useEffect} from "react";
 import {useNavigate} from 'react-router-dom';
 import {LOADING_STATUS} from "../common/CommonConst";
+import {useAuth} from "../AuthProvider";
 
 function Login() {
     const navigate = useNavigate();
     const naver = NaverLogin();
+    const { login } = useAuth();
 
     const onClickNaverJoin = () => {
         // 네이버 회원가입 진행
@@ -26,7 +28,8 @@ function Login() {
     useEffect(() => {
         function listener(result) {
             if(result.data.callback_result === LOADING_STATUS.SUCCESS) {
-                navigate('/', {replace: true});
+                login();
+                navigate('/', { replace: true, state: { newMember: result.data.callback_new_member } });
             }
         }
 
@@ -35,7 +38,7 @@ function Login() {
         return () => {
             window.removeEventListener('message', listener);
         }
-    }, [navigate]);
+    }, [navigate, login]);
 
     return (
         <Flex className="join-btn-flex" gap="middle" align="center" justify="center" vertical>
