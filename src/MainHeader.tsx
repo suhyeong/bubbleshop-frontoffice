@@ -12,12 +12,6 @@ function MainHeader() {
     const [cartCount, setCartCount] = useState(0);
     const { isMember } = useAuth();
 
-    const getCardCount = () => {
-        if(cartCount > 0)
-            return `${process.env.PUBLIC_URL}/main-full-cart.png`;
-        else return `${process.env.PUBLIC_URL}/main-cart.png`;
-    }
-
     const onClickSearchBtn = () => {
     }
 
@@ -37,7 +31,7 @@ function MainHeader() {
                             {isMember && <Link className='main-header-col-pc-menu-link' href="https://ant.design">마이페이지</Link>}
                             <Link className='main-header-col-pc-menu-link' href="https://ant.design">고객센터</Link>
                             <Link className='main-header-col-pc-menu-cart' href="https://ant.design">
-                                <img src={getCardCount()} style={{width: '24px', height: '24px'}} alt={'cart'}/>
+                                <img src={cartCount > 0 ? require('./assets/icon/main-full-cart.png') : require('./assets/icon/main-cart.png')} style={{width: '24px', height: '24px'}} alt={'cart'}/>
                             </Link>
                         </div>
                     </Col>

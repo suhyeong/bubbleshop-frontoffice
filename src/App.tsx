@@ -3,7 +3,7 @@ import React from "react";
 import Main from "./Main";
 import {AuthProvider} from "./AuthProvider";
 
-function App() {
+const App = () => {
   return (
       <AuthProvider>
           <Main />

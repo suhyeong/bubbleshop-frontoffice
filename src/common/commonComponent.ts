@@ -1,6 +1,6 @@
 import {Modal} from "antd";
 
-const errorModalWithActionClick = (message, onClickAction) => {
+const errorModalWithActionClick = (message: string, onClickAction: Function) => {
     Modal.error({
         // centered: true,
         mask: false,
@@ -8,7 +8,7 @@ const errorModalWithActionClick = (message, onClickAction) => {
         content: message,
         style: { whiteSpace: 'pre-line' },
         okText: "확인",
-        onOk: onClickAction
+        onOk: () => onClickAction
     });
 }
 

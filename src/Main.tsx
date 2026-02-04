@@ -8,7 +8,7 @@ import Login from "./login/Login";
 import { notification } from 'antd';
 import { SmileOutlined } from '@ant-design/icons';
 
-function Main() {
+const Main = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const [api, contextHolder] = notification.useNotification();
