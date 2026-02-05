@@ -5,7 +5,7 @@
 }
 
 .naver-login-btn {
-    background-image: url("/src/asserts/image/naver_login_btn_bg.png");
+    background-image: url("/src/assets/image/naver_login_btn_bg.png");
     border-color: #03C75A;
     width: 50vw;
     max-width: 450px;
@@ -32,7 +32,7 @@
 }
 
 .kakao-login-btn {
-    background-image: url("/src/asserts/image/kakao_login_btn_bg.png");
+    background-image: url("/src/assets/image/kakao_login_btn_bg.png");
     width: 50vw;
     max-width: 450px;
     min-width: 300px;

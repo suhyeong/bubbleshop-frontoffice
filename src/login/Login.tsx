@@ -1,12 +1,13 @@
 import {Button, Flex} from "antd";
 import "./Login.css";
-import {NaverLogin} from "./NaverLogin";
+import {NaverLogin} from "./naverLogin";
 import {useEffect} from "react";
 import {useNavigate} from 'react-router-dom';
-import {LOADING_STATUS} from "../common/CommonConst";
+import {LOADING_STATUS} from "../common/commonConst";
 import {useAuth} from "../AuthProvider";
+import {LoginResultMessage} from "../common/commonInterface";
 
-function Login() {
+const Login = () => {
     const navigate = useNavigate();
     const naver = NaverLogin();
     const { login } = useAuth();
@@ -26,7 +27,7 @@ function Login() {
     }
 
     useEffect(() => {
-        function listener(result) {
+        function listener(result: MessageEvent<LoginResultMessage>) {
             if(result.data.callback_result === LOADING_STATUS.SUCCESS) {
                 login();
                 navigate('/', { replace: true, state: { newMember: result.data.callback_new_member } });

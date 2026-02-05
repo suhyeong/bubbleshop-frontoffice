@@ -1,5 +1,6 @@
+import {AxiosResponse} from "axios";
 
-const getResult = (response, message) => {
+const getResult = (message: string, response?: AxiosResponse) => {
     if(response !== undefined) {
         // status 가 200 OK 인 경우
         if(response.status === 200) {
@@ -24,10 +25,10 @@ const getResult = (response, message) => {
     }
 }
 
-const getErrorMessage = (response, message) => {
+const getErrorMessage = (message: string, response?: AxiosResponse) => {
     if(response !== undefined) {
         let resultCode = response.headers['resultcode'];
-        let resultMessage = message;
+        let resultMessage: string = message;
         if(response.headers['resultmessage']) {
             resultMessage = decodeUTF8String(response.headers['resultmessage']);
         }
@@ -42,12 +43,12 @@ const getErrorMessage = (response, message) => {
     }
 }
 
-function decodeUTF8String(encodedStr) {
+function decodeUTF8String(encodedStr: string) {
     try {
         return decodeURIComponent(encodedStr.replace(/\+/g, ' '));
     } catch (e) {
         console.error('Error decoding UTF-8 string:', e);
-        return null;
+        return '';
     }
 }
 

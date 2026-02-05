@@ -7,14 +7,14 @@
 
 @font-face {
     font-family: 'Inter-Light';
-    src: url(./asserts/font/Inter-Light.woff2) format('woff2');
+    src: url(./assets/font/Inter-Light.woff2) format('woff2');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Inter-SemiBold';
-    src: url(./asserts/font/Inter-SemiBold.woff2) format('woff2');
+    src: url(./assets/font/Inter-SemiBold.woff2) format('woff2');
     font-weight: normal;
     font-style: normal;
 }
@@ -31,7 +31,7 @@
 }
 
 .main-header-div {
-    background-image: url(../public/main-gradient.png);
+    background-image: url(./assets/image/main-gradient.png);
     background-repeat: repeat-x;
     max-height: max-content;
 }
@@ -42,7 +42,7 @@
 }
 
 .main-header-col {
-    background-image: url(../public/main-logo.png);
+    background-image: url(./assets/image/main-logo.png);
     min-height: 15vh;
     background-size: contain;
     background-repeat: no-repeat;
@@ -59,7 +59,7 @@
     margin-top: 4vh;
     margin-left: auto;
     margin-right: 40px;
-    background-image: url(../public/main-search.png);
+    background-image: url(./assets/icon/main-search.png);
     height: 28px;
     width: 214px;
     background-size: contain;
@@ -101,7 +101,7 @@
 
 .main-header-col-pc-menu-link {
     margin-left: 2vw;
-    font-family: 'HancomMalangMalang-Regular', sans-serif;
+    font-family: 'Inter-Light', sans-serif;
     font-size: 15px;
     color: black !important;
 }
