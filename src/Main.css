@@ -110,6 +110,10 @@
     margin-left: 2vw;
 }
 
+.main-body-div {
+    font-family: 'Inter-Light', sans-serif;
+}
+
 .main-footer-div body {
     font-family: 'Inter-Light', sans-serif;
 }
