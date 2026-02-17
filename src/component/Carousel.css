@@ -31,7 +31,7 @@
     padding: 0 0.625rem;
 }
 
-.product-carousel {
+.carousel-body {
     width: 100%;
 }
 
@@ -51,11 +51,6 @@
     transition: all 0.3s ease;
 }
 
-/*.carousel-button:hover {*/
-/*    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.2);*/
-/*    transform: translateY(-50%) scale(1.1);*/
-/*}*/
-
 .carousel-button-prev {
     left: 0;
 }
@@ -66,54 +61,6 @@
 
 .arrow-icon {
     font-size: 1.5rem;
-}
-
-.product-card {
-    height: clamp(15rem, 23vw, 20rem);
-    border: 1px solid #f0f0f0;
-    border-radius: 0.5rem;
-    transition: all 0.3s ease;
-    overflow: hidden;
-}
-
-.product-card:hover {
-    transform: translateY(-0.25rem);
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-}
-
-.product-card .ant-card-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.product-cover-image {
-    width: 100%;
-    height: clamp(8rem, 12vw, 10rem);
-    object-fit: cover;
-}
-
-.product-meta {
-    margin-bottom: 0.625rem;
-}
-
-.product-meta .ant-card-meta-title {
-    font-size: clamp(0.875rem, 1.8vw, 1rem);
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-}
-
-.product-meta .ant-card-meta-description {
-    color: #666;
-    font-size: clamp(0.8125rem, 1.5vw, 0.875rem);
-    line-height: 1.5;
-}
-
-.product-price {
-    font-size: clamp(1rem, 1.5vw, 1.25rem);
-    font-weight: bold;
-    color: #1890ff;
-    margin: 0;
 }
 
 .mobile-buttons {

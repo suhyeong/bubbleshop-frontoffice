@@ -3,22 +3,35 @@ import React, {useEffect, useRef, useState} from "react";
 import {CarouselRef} from "antd/es/carousel";
 import {LeftOutlined, RightOutlined, ShoppingOutlined} from "@ant-design/icons";
 import {Button, Card, Carousel, Grid, Col, Row} from "antd";
+import ProductCard from "./ProductCard";
+import {CAROUSEL_COMPONENT_TYPE} from "../common/commonConst";
+import {CarouselItem} from "../common/commonInterface";
 const { useBreakpoint } = Grid;
 
-const CarouselComponent = ({
-   divideItemCount, minItemCount, items, title
+const CarouselComponent = (
+    {
+        divideItemCount,
+        minItemCount,
+        items,
+        title,
+        carouselInnerType,
+        carouselAutoPlay = false,
+        carouselAutoPlaySpeed,
 } : {
     divideItemCount: number, // 슬라이드 아이템 나눌 갯수
     minItemCount: number, // 모바일 판단할 수 있는 최소 아이탬 갯수
-    items: any[], // 아이템 리스트
+    items: CarouselItem[], // 아이템 리스트
     title: string,
+    carouselInnerType: string, // 슬라이드 컴포넌트 내부 타입
+    carouselAutoPlay?: boolean,
+    carouselAutoPlaySpeed?: number | undefined,
 }) => {
     const screens = useBreakpoint();
     const [breakpoint, setBreakPoint] = useState<string>('');
     const carouselRef = useRef<CarouselRef>(null);
 
     const [itemsPerSlide, setItemsPerSlide] = useState<number>(divideItemCount);
-    const [groupedItems, setGroupedItems] = useState<any[]>([]);
+    const [groupedItems, setGroupedItems] = useState<CarouselItem[][]>([]);
     const [colSpan, setColSpan] = useState<number>(24 / divideItemCount);
 
     useEffect(() => {
@@ -30,9 +43,9 @@ const CarouselComponent = ({
 
     useEffect(() => {
         const handleResize = () => {
-            if (['xxl', 'xl', 'lg'].includes(breakpoint)) {
+            if (['xxl', 'xl'].includes(breakpoint)) {
                 setItemsPerSlide(4);
-            } else if (['md'].includes(breakpoint)) {
+            } else if (['lg', 'md'].includes(breakpoint)) {
                 setItemsPerSlide(3);
             } else {
                 setItemsPerSlide(2);
@@ -45,7 +58,7 @@ const CarouselComponent = ({
     }, [breakpoint]);
 
     useEffect(() => {
-        const changeItems = [];
+        const changeItems: CarouselItem[][] = [];
         for (let i = 0; i < items.length; i += itemsPerSlide) {
             changeItems.push(items.slice(i, i + itemsPerSlide));
         }
@@ -64,6 +77,12 @@ const CarouselComponent = ({
     const isMobile = itemsPerSlide === minItemCount;
     const mobileClass = () => {
         return isMobile ? 'mobile' : '';
+    }
+
+    const getCarouselInnerComponentType = (item: any) => {
+        if (CAROUSEL_COMPONENT_TYPE.PRODUCT === carouselInnerType)
+            return <ProductCard item={item} />
+        else return undefined;
     }
 
     return (
@@ -87,39 +106,21 @@ const CarouselComponent = ({
                 {/* Carousel */}
                 <Carousel
                     ref={carouselRef}
-                    dots={true}
-                    autoplay={false}
+                    autoplay={carouselAutoPlay}
+                    autoplaySpeed={carouselAutoPlaySpeed}
                     swipe={true}
                     draggable
-                    className="product-carousel"
+                    className="carousel-body"
+                    key={itemsPerSlide}
                 >
                     {groupedItems.map((group, index) => (
                         <div key={index}>
                             <Row gutter={[16, 16]}>
-                                {group.map((item: any) => (
+                                {group.map((item: CarouselItem) => (
                                     <Col span={colSpan} key={item.id}>
-                                        {/* TODO 컴포넌트 빼기 */}
-                                        <Card
-                                            hoverable
-                                            className="product-card"
-                                            cover={
-                                                <img
-                                                    draggable={false}
-                                                    alt={item.title}
-                                                    src={item.image}
-                                                    className="product-cover-image"
-                                                />
-                                            }
-                                        >
-                                            <Card.Meta
-                                                title={item.title}
-                                                description={item.content}
-                                                className="product-meta"
-                                            />
-                                            <p className="product-price">
-                                                {item.price}
-                                            </p>
-                                        </Card>
+                                        {
+                                            getCarouselInnerComponentType(item)
+                                        }
                                     </Col>
                                 ))}
                             </Row>
