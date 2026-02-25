@@ -1,7 +1,7 @@
 import {Modal} from "antd";
 
 const errorModalWithActionClick = (message: string, onClickAction: Function) => {
-    Modal.error({
+    return Modal.error({
         // centered: true,
         mask: false,
         title: 'ERROR',
@@ -12,4 +12,18 @@ const errorModalWithActionClick = (message: string, onClickAction: Function) => 
     });
 }
 
-export { errorModalWithActionClick };
+const errorModalWithActionClickAndCountdown = (message: string, count: number, onClickAction: Function) => {
+    let seconds = count;
+    const instance = errorModalWithActionClick(message, onClickAction);
+
+    const timer = setInterval(() => {
+        seconds -= 1;
+    }, 1000);
+
+    setTimeout(() => {
+        clearInterval(timer);
+        instance.destroy();
+    }, seconds * 1000);
+}
+
+export { errorModalWithActionClick, errorModalWithActionClickAndCountdown };

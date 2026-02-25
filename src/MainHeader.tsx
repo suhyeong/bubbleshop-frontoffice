@@ -5,12 +5,30 @@ import {
 } from '@ant-design/icons'
 import {useState} from "react";
 import {useAuth} from "./AuthProvider";
+import api from "./common/commonApi";
+import {AxiosError, AxiosResponse} from "axios";
+import {DEFAULT_ERROR_MESSAGE} from "./common/commonConst";
+import {getErrorMessage} from "./common/axiosResponse";
+import {errorModalWithActionClickAndCountdown} from "./common/commonComponent";
 
 const { Link } = Typography;
 
 function MainHeader() {
     const [cartCount, setCartCount] = useState(0);
-    const { isMember } = useAuth();
+    const { isMember, logout } = useAuth();
+
+    const onClickLogout = (event: any) => {
+        event.preventDefault(); // 페이지 이동 막기
+        api.delete(`/member-proxy/member/v1/auth`)
+            .then((response: AxiosResponse) => {
+                logout();
+                window.location.reload();
+            })
+            .catch((error: AxiosError) => {
+                const message = getErrorMessage(DEFAULT_ERROR_MESSAGE, error.response);
+                errorModalWithActionClickAndCountdown(message, 3, () => {})
+            });
+    }
 
     const onClickSearchBtn = () => {
     }
@@ -27,7 +45,7 @@ function MainHeader() {
                         </div>
                         <div className='main-header-col-pc-menu'>
                             {!isMember && <Link className='main-header-col-pc-menu-link' href="/login">로그인</Link>}
-                            {isMember && <Link className='main-header-col-pc-menu-link' href="/logout">로그아웃</Link>}
+                            {isMember && <Link className='main-header-col-pc-menu-link' onClick={(e) => onClickLogout(e)}>로그아웃</Link>}
                             {isMember && <Link className='main-header-col-pc-menu-link' href="https://ant.design">마이페이지</Link>}
                             <Link className='main-header-col-pc-menu-link' href="https://ant.design">고객센터</Link>
                             <Link className='main-header-col-pc-menu-cart' href="https://ant.design">
