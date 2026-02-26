@@ -12,7 +12,7 @@ function MainFooter() {
         <footer className='main-footer-div'>
             <div>
                 <Row className='main-footer-pc-row'>
-                    <Col className='main-footer-col-pc' xs={0} sm={0} md={18} lg={17} xl={17}>
+                    <Col className='main-footer-col-pc' xs={0} sm={0} md={18} lg={18} xl={18}>
                         <div className='main-footer-col-pc-info'>
                             <div className='info-div'>
                                 <Text className='info-name'>Company </Text><Text className='info-value'>버블샵</Text>
@@ -33,7 +33,7 @@ function MainFooter() {
                             </div>
                         </div>
                     </Col>
-                    <Col xs={0} sm={0} md={6} lg={5} xl={5}>
+                    <Col xs={0} sm={0} md={6} lg={6} xl={6}>
                         <div className='main-footer-col-pc-menu'>
                             <div><Link className='menu-value-bold'>HOME</Link></div>
                             <div><Link className='menu-value'>회사소개</Link></div>

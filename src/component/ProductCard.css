@@ -1,0 +1,94 @@
+.product-card {
+    /*height: clamp(15rem, 23vw, 20rem);*/
+    /*border: 1px solid #f0f0f0;*/
+    /*border-radius: 0.5rem;*/
+    border: none;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.product-card:hover {
+    transform: translateY(-0.25rem);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+.product-card .ant-card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.product-cover-image {
+    width: 100%;
+    height: clamp(8rem, 12vw, 10rem);
+    object-fit: scale-down;
+}
+
+.product-tag {
+    width: 100%;
+    margin-top: 0.9rem;
+    margin-bottom: 0.9rem;
+}
+
+.product-meta {
+    margin-bottom: 0.625rem;
+}
+
+.product-meta .ant-card-meta-title {
+    font-size: clamp(0.9375rem, 1.3vw, 1.1rem);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+
+    /* 2줄 제한 */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    line-height: 1.4;
+}
+
+.product-meta .ant-card-meta-description {
+    color: #666;
+    font-size: clamp(0.8125rem, 1.5vw, 0.875rem);
+    line-height: 1.5;
+}
+
+.product-deadline-span {
+    font-size: clamp(0.75rem, 1.25vw, 1rem);
+    font-weight: bold;
+}
+
+.product-deadline-span.countdown {
+    color: #9BB1C7;
+}
+
+.product-deadline-span.today {
+    color: #67abce;
+}
+
+.product-deadline-span.closed {
+    color: #9BB1C7;
+}
+
+.product-price {
+    display: flex;
+    align-items: center; /* 수직 가운데 정렬 */
+    gap: 5px;
+    margin: 0;
+}
+
+.product-origin-price {
+    font-size: clamp(0.75rem, 1.25vw, 1rem);
+    font-weight: bold;
+    text-decoration: line-through;
+    color: #9C8C94;
+}
+
+.product-final-price {
+    /*font-size: clamp(1rem, 1.5vw, 1.25rem);*/
+    font-size: clamp(0.9375rem, 1.5vw, 1.3rem);
+    font-weight: bold;
+    color: #ff6c7f;
+}

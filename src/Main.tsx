@@ -1,6 +1,7 @@
 import "./Main.css";
 import MainHeader from "./MainHeader";
 import MainFooter from "./MainFooter";
+import MainBody from "./MainBody";
 import {Route, Routes, useLocation, useNavigate} from "react-router-dom";
 import React, {useEffect} from "react";
 import OAuthCallback from "./login/OAuthCallback";
@@ -34,9 +35,11 @@ const Main = () => {
             <MainHeader />
             <div className='main-content'>
                 <Routes>
-                    <Route path='/' />
+                    <Route index element={<MainBody />} />
                     <Route path='/login' element={<Login />} />
                     <Route path='/oauth-callback' element={<OAuthCallback />} />
+                    {/* TODO 404 Error Page */}
+                    <Route path="*" element={<></>} />
                 </Routes>
             </div>
             <MainFooter />
